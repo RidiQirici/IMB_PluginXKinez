@@ -68,6 +68,7 @@ public class PrintPc700 extends CordovaPlugin{
                 if(this.printoTekstin(message))
                 {
                 	this.veprimiKryer = true;
+                	System.out.println(TAG + " Printimi u krye me sukses!");
                 	Log.d(TAG, "Printimi u krye me sukses!");
                 	this.mesazhi.success("Printimi u krye me sukses!");
                 	
@@ -75,6 +76,7 @@ public class PrintPc700 extends CordovaPlugin{
                 else
                 {
                 	this.veprimiKryer = false;
+                	System.out.println(TAG + " Ndodhi nje gabim gjate printimit!");
                 	Log.d(TAG, "Ndodhi nje gabim gjate printimit!");
                 	this.mesazhi.error("Ndodhi nje gabim gjate printimit!");
                 	
@@ -82,6 +84,7 @@ public class PrintPc700 extends CordovaPlugin{
                 	
             } else {
                 this.veprimiKryer = false;
+                System.out.println(TAG + " Ndodhi nje JSON Exception!");
                 Log.d(TAG, "Ndodhi nje JSON Exception ");
                 this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
                 
@@ -90,6 +93,7 @@ public class PrintPc700 extends CordovaPlugin{
             //TODO
         } else {
         	this.veprimiKryer = false;
+        	System.out.println(TAG + " Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
         	Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
         	this.mesazhi.error("Veprim i pavlefshem!");
             
@@ -106,6 +110,7 @@ public class PrintPc700 extends CordovaPlugin{
 			if (!this.veprimiKryer)
 			{
 				this.veprimiKryer = false;
+				System.out.println(TAG + " Ndodhi nje problem gjate hapjes se portes seriale 38400!");
 				this.mesazhi.error("Ndodhi nje problem gjate hapjes se portes seriale 38400!");
 				return this.veprimiKryer;
 			}
@@ -116,6 +121,7 @@ public class PrintPc700 extends CordovaPlugin{
 			{
 				printerClass.close();
 				this.veprimiKryer = false;
+				System.out.println(TAG + " Printimi i tekstit nuk u krye me sukses!");
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
@@ -124,6 +130,7 @@ public class PrintPc700 extends CordovaPlugin{
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
+			System.out.println(TAG + " " +  e.getMessage());
 			Log.e(TAG, e.getMessage());
         	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer );
 
