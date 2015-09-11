@@ -1,0 +1,22 @@
+{
+  "name": "imb_pluginxkinez",
+  "version": "1.0.0",
+  "description": "Plugin IMB per kinezin qe printon dhe qe nuk e kishte bere dot si plugin per tollonat tone.",
+  "main": "www/pc700print.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RidiQirici/IMB_PluginXKinez.git"
+  },
+  "keywords": [
+    "IMB"
+  ],
+  "author": "Ridi Qirici",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RidiQirici/IMB_PluginXKinez/issues"
+  },
+  "homepage": "https://github.com/RidiQirici/IMB_PluginXKinez"
+}

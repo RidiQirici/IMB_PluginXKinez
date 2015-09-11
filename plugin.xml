@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="imb.ridiqirici.plugin.cordova.pc700print"
+    version="1.0.0">
+
+  <name>IMB_PluginXKinez</name>
+  <description>Plugin IMB per kinezin qe printon dhe qe nuk e kishte bere dot si plugin per tollonat tone.</description>
+  <repo>https://github.com/RidiQirici/IMB_PluginXKinez</repo>
+  <license>Apache 2.0</license>
+  <keywords>cordova, IMB, imb</keywords>
+
+  <author>Ridi Qirici</author>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <js-module src="www/pc700print.js" name="Pc700Print">
+    <clobbers target="cordova.plugins.pc700Print" />
+  </js-module>
+
+  <asset src="www/pc700print.js" target="pc700print.js" />
+
+   <!-- android -->
+  <platform name="android"> 
+
+    <source-file src="src/android/PrintPc700.java" target-dir="src/imb/ridiqirici/plugin/cordova/pc700print" />
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="PrintPc700">
+        <param name="android-package" value="imb.ridiqirici.plugin.cordova.pc700print.PrintPc700" />
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+    </config-file>
+
+    <source-file src="src/android/lib/pc700Print.jar" target-dir="libs" framework="true"/>
+  </platform>
+
+</plugin>
