@@ -65,18 +65,34 @@ public class PrintPc700 extends CordovaPlugin{
         if (PRINT_TEXT.equals(action)) {
         	String message = args.getString(0);
             if (!message.isEmpty()) {
-                this.printoTekstinMetoda2(message);
+                if(this.printoTekstin(message))
+                {
+                	this.veprimiKryer = true;
+                	Log.d(TAG, "Printimi u krye me sukses!");
+                	this.mesazhi.success("Printimi u krye me sukses!");
+                	
+                }
+                else
+                {
+                	this.veprimiKryer = false;
+                	Log.d(TAG, "Ndodhi nje gabim gjate printimit!");
+                	this.mesazhi.error("Ndodhi nje gabim gjate printimit!");
+                	
+                }
+                	
             } else {
                 this.veprimiKryer = false;
-                this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
                 Log.d(TAG, "Ndodhi nje JSON Exception ");
+                this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
+                
             }
         } else if (PRINT_IMG.equals(action)) {
             //TODO
         } else {
         	this.veprimiKryer = false;
+        	Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
         	this.mesazhi.error("Veprim i pavlefshem!");
-            Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
+            
         }
         return veprimiKryer;
     }
@@ -108,8 +124,9 @@ public class PrintPc700 extends CordovaPlugin{
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
-        	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer );
 			Log.e(TAG, e.getMessage());
+        	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer );
+
 			return this.veprimiKryer;
 		}
     }
