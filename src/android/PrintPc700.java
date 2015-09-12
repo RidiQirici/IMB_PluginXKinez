@@ -105,6 +105,10 @@ public class PrintPc700 extends CordovaPlugin{
 		this.veprimiKryer = true;
 		try {
 			printerClass = new PrinterClassSerialPort();
+			
+			if (printerClass.IsOpen())
+				printerClass.close();
+			
 			this.veprimiKryer = printerClass.open();
 			
 			if (!this.veprimiKryer)
