@@ -121,9 +121,10 @@ public class PrintPc700 extends CordovaPlugin{
 				this.mesazhi.error("Ndodhi nje problem gjate hapjes se portes seriale 38400!");
 				return this.veprimiKryer;
 			}
-			perPrintim = stringaXPrintim;
+			
+			this.veprimiKryer = printerClass.printText(stringaXPrintim);
 
-			autoprint_Thread = new Thread() {
+			/*autoprint_Thread = new Thread() {
 				public void run() {					
 						while (printimi == true)
 						{
@@ -140,7 +141,7 @@ public class PrintPc700 extends CordovaPlugin{
 			
 			autoprint_Thread.start();
 			
-			this.veprimiKryer = printimi;
+			this.veprimiKryer = printimi;*/
 							
 			if (!this.veprimiKryer)
 			{
