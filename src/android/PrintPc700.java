@@ -119,13 +119,13 @@ public class PrintPc700 extends CordovaPlugin{
 			
 			if (!this.veprimiKryer)
 			{
-				printerClass.close();
+				//printerClass.close();
 				this.veprimiKryer = false;
 				System.out.println(TAG + " Printimi i tekstit nuk u krye me sukses!");
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
-			printerClass.close();
+			//printerClass.close();
 			this.mesazhi.success("Printimi i tekstit u krye me sukses! ");
 			return this.veprimiKryer;
 		} catch (Exception e) {
