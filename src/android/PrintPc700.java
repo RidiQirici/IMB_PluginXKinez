@@ -110,7 +110,7 @@ public class PrintPc700 extends CordovaPlugin{
 
 			printerClass = new PrinterClassSerialPort();
 			System.out.println(TAG + printerClass.getState());
-			printerClass.
+
 			if (!printerClass.IsOpen())
 				printerClass.open();
 
