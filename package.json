@@ -1,6 +1,6 @@
 {
   "name": "imb_pluginxkinez",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Plugin IMB per kinezin qe printon dhe qe nuk e kishte bere dot si plugin per tollonat tone.",
   "main": "www/pc700print.js",
   "scripts": {

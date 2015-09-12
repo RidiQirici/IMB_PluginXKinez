@@ -107,13 +107,13 @@ public class PrintPc700 extends CordovaPlugin{
 	public boolean printoTekstin(String stringaXPrintim) {
 		this.veprimiKryer = true;
 		try {
+
 			printerClass = new PrinterClassSerialPort();
-			
-			if (printerClass.IsOpen())
-				printerClass.close();
-			
-			this.veprimiKryer = printerClass.open();
-			
+			System.out.println(TAG + printerClass.getState());
+			printerClass.
+			if (!printerClass.IsOpen())
+				printerClass.open();
+
 			if (!this.veprimiKryer)
 			{
 				this.veprimiKryer = false;
