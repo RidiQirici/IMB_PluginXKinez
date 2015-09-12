@@ -122,16 +122,12 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}
 			perPrintim = stringaXPrintim;
-			final String [] perPrintimVektor = perPrintim.split("(?<=\\G.{" + 50 + "})");
-			
 
 			autoprint_Thread = new Thread() {
 				public void run() {					
-					for (int i = 0; i < perPrintimVektor.length; i++)
-					{
-						if (printimi == true)
+						while (printimi == true)
 						{
-							printimi = printerClass.printText(perPrintimVektor[i]);
+							printimi = printerClass.printText(perPrintim);
 
 							try {
 								Thread.sleep(1000);
@@ -139,7 +135,6 @@ public class PrintPc700 extends CordovaPlugin{
 								Log.e(TAG, e.getMessage());
 							}
 						}
-					}
 				}
 			};
 			
