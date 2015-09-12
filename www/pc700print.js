@@ -30,13 +30,13 @@
             return;
         }
         
-        setTimeout(function(){exec(
+        exec(
             successCallback,
             errorCallback,
             "PrintPc700",
             "printText",
             [text]
-        );},1000);
+        );
     };
     
     module.exports = new Pc700Print();
