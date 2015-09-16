@@ -59,6 +59,7 @@ public class PrintPc700 extends CordovaPlugin{
     private Thread autoprint_Thread;
     private String perPrintim;
     private boolean printimi = true;
+    private String mesazhPrintim = "";
     
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -66,9 +67,17 @@ public class PrintPc700 extends CordovaPlugin{
 		this.veprimiKryer = true;
 		
         if (PRINT_TEXT.equals(action)) {
-        	String message = args.getString(0);
-            if (!message.isEmpty()) {
-                if(this.printoTekstin(message))
+        	mesazhPrintim = args.getString(0);
+            if (!mesazhPrintim.isEmpty()) {
+            	
+            	Thread t = new Thread(){
+            	    public void run(){
+            	    	veprimiKryer = printoTekstin(mesazhPrintim);
+            	    }
+            	};
+            	t.start();
+            	
+                if(veprimiKryer)
                 {
                 	this.veprimiKryer = true;
                 	System.out.println(TAG + " Printimi u krye me sukses!");
@@ -121,6 +130,7 @@ public class PrintPc700 extends CordovaPlugin{
 				this.mesazhi.error("Ndodhi nje problem gjate hapjes se portes seriale 38400!");
 				return this.veprimiKryer;
 			}
+			
 			
 			this.veprimiKryer = printerClass.printText(stringaXPrintim);
 							
