@@ -1,7 +1,7 @@
 package imb.ridiqirici.plugin.cordova.pc700print;
 
-import org.apache.cordova.api.CordovaPlugin;
-import org.apache.cordova.api.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.util.Log;
@@ -12,8 +12,6 @@ public class PrintPc700 extends CordovaPlugin {
 	public static final String PRINT_IMG = "printImg";
 	protected static final String TAG = "Pc700PrintPlugin";
 	private boolean veprimiKryer;
-	static PrinterClassSerialPort printerClass = null;
-	private String mesazhPrintim = "";
 
 	@Override
 	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -63,7 +61,7 @@ public class PrintPc700 extends CordovaPlugin {
 		boolean pergjigja = true;
 		try {
 
-			printerClass = new PrinterClassSerialPort();
+			PrinterClassSerialPort printerClass = new PrinterClassSerialPort();
 			System.out.println(TAG + " " + printerClass.getState());
 
 			if (!printerClass.IsOpen()) {
