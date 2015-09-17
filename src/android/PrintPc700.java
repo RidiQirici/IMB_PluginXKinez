@@ -144,14 +144,38 @@ public class PrintPc700 extends CordovaPlugin{
 			System.out.println(TAG + " E ekzekutoi per nder printerClass.printText(stringaXPrintim)");
 			if (!this.veprimiKryer)
 			{
-				printerClass.close();
-				this.veprimiKryer = false;
-				System.out.println(TAG + " Printimi i tekstit nuk u krye me sukses!");
-				mesazhPrintimGlob = "Printimi i tekstit nuk u krye me sukses! ";
-				return this.veprimiKryer;
+				if (printerClass.IsOpen())
+				{
+					this.veprimiKryer = printerClass.close();
+					if (this.veprimiKryer)
+					{
+						this.veprimiKryer = false;
+						System.out.println(TAG + " Printimi i tekstit nuk u krye me sukses!");
+						mesazhPrintimGlob = "Printimi i tekstit nuk u krye me sukses! ";
+						return this.veprimiKryer;
+					}
+					else {
+						this.veprimiKryer = false;
+						System.out.println(TAG + " Nuk u mbyll porta!");
+						mesazhPrintimGlob = "Nuk u mbyll porta!";
+						return this.veprimiKryer;
+					}
+				}
 			}
 			System.out.println(TAG + " Mos me thuaj qe erdhi deri ketu pa printuar .... :O");
-			printerClass.close();
+			System.out.println(TAG + " " + printerClass.getState());
+			if (printerClass.IsOpen())
+			{
+				this.veprimiKryer = printerClass.close();
+				if (!this.veprimiKryer)
+				{
+					this.veprimiKryer = false;
+					System.out.println(TAG + " Nuk u mbyll porta!");
+					mesazhPrintimGlob = "Nuk u mbyll porta!";
+					return this.veprimiKryer;
+				}
+				
+			}
 			System.out.println(TAG + " Printimi i tekstit u krye me sukses! ");
 			mesazhPrintimGlob = "Printimi i tekstit u krye me sukses! ";
 			return this.veprimiKryer;
