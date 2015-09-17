@@ -122,10 +122,14 @@ public class PrintPc700 extends CordovaPlugin{
 		try {
 
 			printerClass = new PrinterClassSerialPort();
-			System.out.println(TAG + printerClass.getState());
-
+			System.out.println(TAG + " " + printerClass.getState());
+			
 			if (!printerClass.IsOpen())
-				printerClass.open();
+			{
+				System.out.println(TAG + " Po hapen portat...");
+				this.veprimiKryer = printerClass.open();
+				System.out.println(TAG + " U hapen portat...");
+			}
 
 			if (!this.veprimiKryer)
 			{
@@ -134,6 +138,7 @@ public class PrintPc700 extends CordovaPlugin{
 				mesazhPrintimGlob = "Ndodhi nje problem gjate hapjes se portes seriale 38400!";
 				return this.veprimiKryer;
 			}
+			System.out.println(TAG + " Po printohet");
 			System.out.println(TAG + " " + stringaXPrintim);
 			this.veprimiKryer = printerClass.printText(stringaXPrintim);
 			System.out.println(TAG + " E ekzekutoi per nder printerClass.printText(stringaXPrintim)");
