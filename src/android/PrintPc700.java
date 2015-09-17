@@ -72,6 +72,7 @@ public class PrintPc700 extends CordovaPlugin{
 
 				Thread th = new Thread(new Runnable() {
 					public void run() {
+						System.out.println(TAG + " " + mesazhPrintim);
 						veprimiKryer = printoTekstin(mesazhPrintim);
 					}
 				});
@@ -130,8 +131,8 @@ public class PrintPc700 extends CordovaPlugin{
 				this.mesazhi.error("Ndodhi nje problem gjate hapjes se portes seriale 38400!");
 				return this.veprimiKryer;
 			}
-
-			this.veprimiKryer = printerClass.printText(mesazhPrintim);
+			System.out.println(TAG + " " + stringaXPrintim);
+			this.veprimiKryer = printerClass.printText(stringaXPrintim);
 
 			if (!this.veprimiKryer)
 			{
@@ -142,6 +143,7 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}
 			printerClass.close();
+			System.out.println(TAG + " Printimi i tekstit u krye me sukses! ");
 			this.mesazhi.success("Printimi i tekstit u krye me sukses! ");
 			return this.veprimiKryer;
 		} catch (Exception e) {
