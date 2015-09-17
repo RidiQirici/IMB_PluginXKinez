@@ -74,7 +74,7 @@ public class PrintPc700 extends CordovaPlugin{
 				Thread th = new Thread(new Runnable() {
 					public void run() {
 						System.out.println(TAG + " " + mesazhPrintim);
-						veprimiKryer = printoTekstin(mesazhPrintim);
+						veprimiKryer = printoTekstinMetoda2(mesazhPrintim);
 					}
 				});
 				th.start();
@@ -193,9 +193,8 @@ public class PrintPc700 extends CordovaPlugin{
 		this.veprimiKryer = true;
 		try {
 			printerClass = new PrinterClassSerialPort();
-			this.veprimiKryer = printerClass.open();
 
-			if (printerClass.setSerialPortBaudrate(38400))
+			if (printerClass.open())
 			{
 				this.veprimiKryer = printerClass.printText(stringaXPrintim);
 				if (!this.veprimiKryer)
