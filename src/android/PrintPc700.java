@@ -79,7 +79,6 @@ public class PrintPc700 extends CordovaPlugin{
 
 				if(veprimiKryer)
 				{
-					th.interrupt();
 					this.veprimiKryer = true;
 					System.out.println(TAG + " Printimi u krye me sukses!");
 					Log.d(TAG, "Printimi u krye me sukses!");
@@ -88,7 +87,6 @@ public class PrintPc700 extends CordovaPlugin{
 				}
 				else
 				{
-					th.interrupt();
 					this.veprimiKryer = false;
 					System.out.println(TAG + " Ndodhi nje gabim gjate printimit!");
 					Log.d(TAG, "Ndodhi nje gabim gjate printimit!");
@@ -133,8 +131,12 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}
 
-
-			this.veprimiKryer = printerClass.printText(stringaXPrintim);
+			Thread th = new Thread(new Runnable() {
+				public void run() {
+					veprimiKryer = printerClass.printText(mesazhPrintim);
+				}
+			});
+			th.start();
 
 			if (!this.veprimiKryer)
 			{
