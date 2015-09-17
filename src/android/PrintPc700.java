@@ -131,12 +131,7 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}
 
-			Thread th = new Thread(new Runnable() {
-				public void run() {
-					veprimiKryer = printerClass.printText(mesazhPrintim);
-				}
-			});
-			th.start();
+			this.veprimiKryer = printerClass.printText(mesazhPrintim);
 
 			if (!this.veprimiKryer)
 			{
