@@ -70,15 +70,10 @@ public class PrintPc700 extends CordovaPlugin{
 			mesazhPrintim = args.getString(0);
 			if (!mesazhPrintim.isEmpty()) {
 
-				Thread th = new Thread(new Runnable() {
+				final Thread th = new Thread(new Runnable() {
 					public void run() {
 						veprimiKryer = printoTekstin(mesazhPrintim);
-						try {
-							Thread.sleep(500);
-							//th.interrupt();
-						} catch (InterruptedException e) {
-							Log.e(TAG, e.getMessage());
-						}
+						th.interrupt();
 					}
 				});
 				th.start();
