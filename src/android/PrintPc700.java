@@ -59,10 +59,11 @@ public class PrintPc700 extends CordovaPlugin{
 	private Thread autoprint_Thread;
 	private String perPrintim;
 	private boolean printimi = true;
-	private String mesazhPrintim = "";
-
+	private String mesazhPrintimGlob = "";
+	private String mesazhPrintim="";
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		System.out.println(TAG + " Hyri execute!");
 		this.mesazhi = callbackContext;
 		this.veprimiKryer = true;
 
@@ -83,7 +84,7 @@ public class PrintPc700 extends CordovaPlugin{
 					this.veprimiKryer = true;
 					System.out.println(TAG + " Printimi u krye me sukses!");
 					Log.d(TAG, "Printimi u krye me sukses!");
-					this.mesazhi.success(mesazhPrintim);
+					this.mesazhi.success(mesazhPrintimGlob);
 
 				}
 				else
@@ -91,14 +92,14 @@ public class PrintPc700 extends CordovaPlugin{
 					this.veprimiKryer = false;
 					System.out.println(TAG + " Ndodhi nje gabim gjate printimit!");
 					Log.d(TAG, "Ndodhi nje gabim gjate printimit!");
-					this.mesazhi.error(mesazhPrintim);
+					this.mesazhi.error(mesazhPrintimGlob);
 
 				}
 
 			} else {
 				this.veprimiKryer = false;
-				System.out.println(TAG + " Ndodhi nje JSON Exception!");
-				Log.d(TAG, "Ndodhi nje JSON Exception ");
+				System.out.println(TAG + " Perdoruesi nuk ka specifikuar te dhena per tu printuar!");
+				Log.d(TAG, " Perdoruesi nuk ka specifikuar te dhena per tu printuar!");
 				this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
 
 			}
@@ -111,10 +112,12 @@ public class PrintPc700 extends CordovaPlugin{
 			this.mesazhi.error("Veprim i pavlefshem!");
 
 		}
+		System.out.println(TAG + " Printoje me duket te hengert dheri!");
 		return veprimiKryer;
 	}
 
 	public boolean printoTekstin(String stringaXPrintim) {
+		System.out.println(TAG + " Hyri te printoTekstin o ti....");
 		this.veprimiKryer = true;
 		try {
 
@@ -128,29 +131,30 @@ public class PrintPc700 extends CordovaPlugin{
 			{
 				this.veprimiKryer = false;
 				System.out.println(TAG + " Ndodhi nje problem gjate hapjes se portes seriale 38400!");
-				mesazhPrintim = "Ndodhi nje problem gjate hapjes se portes seriale 38400!";
+				mesazhPrintimGlob = "Ndodhi nje problem gjate hapjes se portes seriale 38400!";
 				return this.veprimiKryer;
 			}
 			System.out.println(TAG + " " + stringaXPrintim);
 			this.veprimiKryer = printerClass.printText(stringaXPrintim);
-
+			System.out.println(TAG + " E ekzekutoi per nder printerClass.printText(stringaXPrintim)");
 			if (!this.veprimiKryer)
 			{
 				printerClass.close();
 				this.veprimiKryer = false;
 				System.out.println(TAG + " Printimi i tekstit nuk u krye me sukses!");
-				mesazhPrintim = "Printimi i tekstit nuk u krye me sukses! ";
+				mesazhPrintimGlob = "Printimi i tekstit nuk u krye me sukses! ";
 				return this.veprimiKryer;
 			}
+			System.out.println(TAG + " Mos me thuaj qe erdhi deri ketu pa printuar .... :O");
 			printerClass.close();
 			System.out.println(TAG + " Printimi i tekstit u krye me sukses! ");
-			mesazhPrintim = "Printimi i tekstit u krye me sukses! ";
+			mesazhPrintimGlob = "Printimi i tekstit u krye me sukses! ";
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
 			System.out.println(TAG + " " +  e.getMessage());
 			Log.e(TAG, e.getMessage());
-			mesazhPrintim = "Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer;
+			mesazhPrintimGlob = "Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer;
 
 			return this.veprimiKryer;
 		}
@@ -168,18 +172,18 @@ public class PrintPc700 extends CordovaPlugin{
 				if (!this.veprimiKryer)
 				{
 					this.veprimiKryer = false;
-					mesazhPrintim = "Printimi i tekstit nuk u krye me sukses!";
+					mesazhPrintimGlob = "Printimi i tekstit nuk u krye me sukses!";
 					return this.veprimiKryer;
 				}
-				mesazhPrintim = "Printimi i tekstit u krye me sukses! ";
+				mesazhPrintimGlob = "Printimi i tekstit u krye me sukses! ";
 				return this.veprimiKryer;
 			}
 			this.veprimiKryer = false;
-			mesazhPrintim = "Ndodhi nje problem gjate hapjes se portes seriale 38400!";
+			mesazhPrintimGlob = "Ndodhi nje problem gjate hapjes se portes seriale 38400!";
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
-			mesazhPrintim = "Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer;
+			mesazhPrintimGlob = "Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer;
 			Log.e(TAG, e.getMessage());
 			return this.veprimiKryer;
 		}
