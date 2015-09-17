@@ -19,7 +19,7 @@ public class PrintPc700 extends CordovaPlugin {
 		this.veprimiKryer = true;
 		if (PRINT_TEXT.equals(action)) {
 			final String mesazhPrintim = args.getString(0);
-			cordova.getThreadPool().execute(new Runnable() {
+			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
 					if (mesazhPrintim != "") {
 						System.out.println(TAG + " " + mesazhPrintim);
