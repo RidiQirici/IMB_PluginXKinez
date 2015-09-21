@@ -98,7 +98,7 @@ public class PrintPc700 extends CordovaPlugin {
 				callbackContext.error("Printimi i tekstit nuk u krye me sukses!");
 				return pergjigja;
 			}
-			System.out.println(TAG + " Mos me thuaj qe erdhi deri ketu pa printuar .... :O");
+			//System.out.println(TAG + " Mos me thuaj qe erdhi deri ketu pa printuar .... :O");
 			/*
 			 * System.out.println(TAG + " " + printerClass.getState()); if
 			 * (printerClass.IsOpen()) { this.veprimiKryer =
@@ -110,6 +110,7 @@ public class PrintPc700 extends CordovaPlugin {
 			 * }
 			 */
 			System.out.println(TAG + " Printimi i tekstit u krye me sukses! ");
+			printerClass = null;
 			callbackContext.success("Printimi i tekstit u krye me sukses! ");
 			return pergjigja;
 		} catch (Exception e) {
