@@ -36,7 +36,7 @@
     <config-file target="AndroidManifest.xml" parent="/manifest">
     </config-file>
 
-    <source-file src="src/android/lib/pc700Print.jar" target-dir="libs" framework="true"/>
+    <source-file src="src/android/libs/pc700Print.jar" target-dir="libs" framework="true"/>
   </platform>
 
 </plugin>
